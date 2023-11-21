@@ -1,0 +1,13 @@
+<form action="{{ action }}" method="{{ method }}">
+    {{ form.hidden_tag() }}
+    {% for field in form %}
+        <div class="form-group">
+            {{ field.label(class="form-control-label") }}
+            {{ field(class="form-control") }}
+            {% if field.errors %}
+                <small class="text-danger">{{ field.errors[0] }}</small>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">{{ submit_text }}</button>
+</form>
