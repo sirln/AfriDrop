@@ -1,7 +1,10 @@
+import uuid
 from flask import Flask, render_template
 from forms import SignUpForm, SignInForm, ForgotPasswordForm, ResetPasswordForm
 
 app = Flask(__name__)
+SECRET_KEY = str(uuid.uuid4())
+app.config['SECRET_KEY'] = SECRET_KEY
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -10,7 +13,7 @@ def signup():
     if form.validate_on_submit():
         # Handle form submission logic here
         pass
-    return render_template('signup.html', form=form)
+    return render_template('sign_up.html', form=form)
 
 
 @app.route('/signin', methods=['GET', 'POST'])
@@ -19,7 +22,7 @@ def signin():
     if form.validate_on_submit():
         # Handle form submission logic here
         pass
-    return render_template('signin.html', form=form)
+    return render_template('sign_in.html', form=form)
 
 
 @app.route('/forgot_password', methods=['GET', 'POST'])
