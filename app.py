@@ -47,11 +47,12 @@ def reset_password():
 
 # Sample data for the timeline
 timeline_data = [
-    {'user': 'User1', 'content': 'This is a post about something interesting.', 'timestamp': '2023-01-01 10:00:00'},
-    {'user': 'User2', 'content': 'Another post with some content.', 'timestamp': '2023-01-02 12:30:00'},
-    {'user': 'User3', 'content': 'Check out this amazing image!', 'image_url': '/static/images/image1.jpg', 'timestamp': '2023-01-03 15:45:00'},
+    {'user': 'User1', 'content': 'This is a post about something interesting.', 'image_url': '/static/images/post1.jpg', 'timestamp': '2023-01-01 10:00:00', 'likes': 25, 'views': 150, 'dislikes': 5},
+    {'user': 'User2', 'content': 'Another post with some content.', 'image_url': '/static/images/post2.jpg', 'timestamp': '2023-01-02 12:30:00', 'likes': 15, 'views': 120, 'dislikes': 3},
+    {'user': 'User3', 'content': 'Check out this amazing image!', 'image_url': '/static/images/post3.jpg', 'timestamp': '2023-01-03 15:45:00', 'likes': 30, 'views': 200, 'dislikes': 8},
     # Add more data as needed
 ]
+
 
 @app.route('/timeline')
 def timeline():
