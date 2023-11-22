@@ -34,8 +34,10 @@ def forgot_password():
     return render_template('forgot_password.html', form=form)
 
 
-@app.route('/reset_password/<token>', methods=['GET', 'POST'])
-def reset_password(token):
+# @app.route('/reset_password/<token>', methods=['GET', 'POST'])
+# def reset_password(token):
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
     form = ResetPasswordForm()
     if form.validate_on_submit():
         # Handle form submission logic here
