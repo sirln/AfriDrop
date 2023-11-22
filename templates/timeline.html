@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %}User Timeline{% endblock %}
+{% block title %}Timeline - Your Website{% endblock %}
 
 {% block content %}
+    <h2>Timeline</h2>
     {% for post in timeline_data %}
         <div class="timeline-item">
             <h5>{{ post['user'] }} - {{ post['timestamp'] }}</h5>
+            {% if post.get('image_url') %}
+                <img src="{{ post['image_url'] }}" alt="Image">
+            {% endif %}
             <p>{{ post['content'] }}</p>
         </div>
     {% endfor %}
 {% endblock %}
-
