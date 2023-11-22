@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}User Timeline{% endblock %}
+
+{% block content %}
+    {% for post in timeline_data %}
+        <div class="timeline-item">
+            <h5>{{ post['user'] }} - {{ post['timestamp'] }}</h5>
+            <p>{{ post['content'] }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
+
