@@ -3,14 +3,19 @@
 {% block title %}Timeline - Your Website{% endblock %}
 
 {% block content %}
-    <h2>Timeline</h2>
-    {% for post in timeline_data %}
-        <div class="timeline-item">
-            <h5>{{ post['user'] }} - {{ post['timestamp'] }}</h5>
-            {% if post.get('image_url') %}
-                <img src="{{ post['image_url'] }}" alt="Image">
-            {% endif %}
-            <p>{{ post['content'] }}</p>
-        </div>
-    {% endfor %}
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Timeline</h2>
+        {% for post in timeline_data %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post['user'] }}</h5>
+                    <p class="card-subtitle text-muted mb-2">{{ post['timestamp'] }}</p>
+                    {% if post.get('image_url') %}
+                        <img src="{{ post['image_url'] }}" alt="Image" class="img-fluid mb-3">
+                    {% endif %}
+                    <p class="card-text">{{ post['content'] }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
