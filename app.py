@@ -45,6 +45,19 @@ def reset_password():
     return render_template('reset_password.html', form=form)
 
 
+# Sample data for the timeline
+timeline_data = [
+    {'user': 'User1', 'content': 'This is a post about something interesting.', 'timestamp': '2023-01-01 10:00:00'},
+    {'user': 'User2', 'content': 'Another post with some content.', 'timestamp': '2023-01-02 12:30:00'},
+    {'user': 'User3', 'content': 'Check out this amazing image!', 'image_url': '/static/images/image1.jpg', 'timestamp': '2023-01-03 15:45:00'},
+    # Add more data as needed
+]
+
+@app.route('/timeline')
+def timeline():
+    return render_template('timeline.html', timeline_data=timeline_data)
+
+
 if __name__ == '__main__':
     """ Main Function """
     app.run(host='0.0.0.0', port=5000, debug=True)
