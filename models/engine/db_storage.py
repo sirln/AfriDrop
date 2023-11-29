@@ -6,7 +6,7 @@ from models.sign_up import SignUp
 
 Base = declarative_base()
 
-DATABASE_URL = 'http://localhost:5000'
+DATABASE_URL = 'mysql://debian-sys-maint:77Bh2wFNVVwZruXr@localhost:3306/models'
 
 Base = declarative_base()
 
@@ -26,8 +26,8 @@ def populate_database(engine_url):
 
     sign_in_data = [
         {id='1', username='user1', password='pass1'},
-        {id='2', username='user2', password='pass2'}
-    ]  
+        {id='2', username='user2', password='pass2'},
+    ]
 
     sign_up_data = [
         {id='1', username='user1', password='pass1', email='user1@example.com'},
@@ -48,9 +48,9 @@ def populate_database(engine_url):
         session.rollback()
         print('Error: Duplicate entry or integrity violation.')
 
-        finally:
-            session.close()
-        
-        if __name__ == '__main__':
-            create_database(DATABASE_URL)
-            populate_database(DATABASE_URL)
+    finally:
+        session.close()
+
+if __name__ == '__main__':
+    create_database(DATABASE_URL)
+    populate_database(DATABASE_URL)

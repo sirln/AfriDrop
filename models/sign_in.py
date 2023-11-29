@@ -1,5 +1,7 @@
 from sqlalchemy import Column, String
 from sqlalchemy.ext.declarative import declarative_base
+import json
+
 
 Base = declarative_base()
 
@@ -8,7 +10,7 @@ class SignIn(Base):
     __tablename__ = 'sign_in'
 
     id = Column(String(20), primary_key=True)
-    name = Column(String(20), nullable=False)
+    name = Column(String(50), nullable=False)
     password = Column(String(20), nullable=False)
 
     def __init__(self, id, name, password):
@@ -36,5 +38,4 @@ class SignIn(Base):
     
     def to_json_dict_list(self):
         return json.dumps(self.to_dict_list())
-    
     
