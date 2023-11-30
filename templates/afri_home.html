@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Afridrop{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/product_landing_page.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block navigation %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="https://www.shutterstock.com/image-vector/map-africa-african-continent-separable-600nw-31881463.jpg" alt="Afridrop Logo" height="40">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <form class="form-inline ml-auto">
+                <div class="input-group rounded-pill">
+                    <input type="search" class="form-control rounded-pill" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-transparent border-0"><i class="fas fa-search text-light"></i></span>
+                    </div>
+                </div>
+            </form>
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login/Sign up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3 text-center bg-light">
+        <h6><b>Connecting Africa, one delivery at a time</b></h6>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 mt-3 text-center">
+                <div class="form-group" id="dropdown1-container">
+                    <label for="dropdown1">Select City</label>
+                    <select id="dropdown1" class="form-control">
+                      {% for city in cities %}
+                        <option value="{{ city }}">{{ city }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+            
+                  <div class="form-group d-none" id="dropdown2-container">
+                    <label for="dropdown2">Select Service</label>
+                    <select id="dropdown2" class="form-control">
+                      {% for service in services %}
+                        <option value="{{ service }}">{{ service }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+            </div>
+        </div>
+
+    </div>
+
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-md-4">
+        {% set colors = ['bg-primary text-white', 'bg-info text-white', 'bg-success text-white', 'bg-warning text-dark'] %}
+        {% for i in range(4) %}
+          <div class="card mb-4 {{ colors[i % colors|length] }}">
+            <div class="card-body">
+              <h6 class="card-title"><b>{{ ['100% Quality Assured', 'High level Expertise', 'Text', 'Lorem ipsum', '24 hour services'][i] }}</b></h6>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="col-md-8">
+        <!-- Map container -->
+	<div id="map" style="height: 475px;"></div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+
+<footer class="bg-dark text-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>About us</h5>
+                <p>Discover our story and mission.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light">Blog</a></li>
+                    <li><a href="#" class="text-light">Reviews</a></li>
+                    <li><a href="#" class="text-light">Contact us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Connect With Us</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#" class="text-light"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#" class="text-light"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="bg-light">
+        <div class="row">
+            <div class="col text-center">
+                <p class="text-light">&copy; 2023 Afridrop. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    // Initialize the map with multiple markers
+    function initMap() {
+      const map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: -1.286389, lng: 36.817223 }, // Center of Africa
+        zoom: 5,
+      });
+
+      // Example markers (replace with your own data)
+      const locations = [
+        { lat: -1.286389, lng: 36.817223, title: 'Nairobi' },
+        { lat: -0.283333, lng: 36.066666, title: 'Nakuru' },
+        { lat: -4.043477, lng: 39.668206, title: 'Mombasa' },
+        // Add more locations as needed
+      ];
+
+      // Create markers for each location
+      locations.forEach((location) => {
+        new google.maps.Marker({
+          position: { lat: location.lat, lng: location.lng },
+          map,
+          title: location.title,
+        });
+      });
+    }
+
+    $(document).ready(function () {
+        $('#dropdown1').change(function () {
+            // Hide the first dropdown
+            $('#dropdown1-container').addClass('d-none');
+
+            // Show the second dropdown
+            $('#dropdown2-container').removeClass('d-none');
+        });
+    });
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ API_KEY }}&callback=initMap" async defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+{% endblock %}
