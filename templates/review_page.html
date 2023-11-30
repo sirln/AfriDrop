@@ -1,35 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review page for Afridrop</title>
+{% extends 'base.html' %}
+
+{% block title %}Review page for Afridrop{% endblock %}
+
+{% block styles %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/review_page.css">
-  </head>
-  <body class="Bg-light">
-  <div class="container mt-5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/review_page.css') }}">
+{% endblock %}
+
+{% block content %}
     <div id="review-container" class="card">
-      <div class="card-body">
-         <div id="review-form">
-             <h2 class="mb-4">Leave a Review</h2>
-                <div id="rating-stars" class="mb-4">
-                   <span class="rating-star" onclick="rate(1)">★</span>
-                   <span class="rating-star" onclick="rate(2)">★</span>
-                   <span class="rating-star" onclick="rate(3)">★</span>
-                   <span class="rating-star" onclick="rate(4)">★</span>
-                   <span class="rating-star" onclick="rate(5)">★</span>
-                </div>
-    <textarea id="comment-box" class="form-control mb-4" placeholder="Write your review here..."></textarea>
-    <button id="submit-btn" class="btn btn-success" onlick="submitReview()">Submit Review</button>
+        <div class="card-body" id="review-form">
+            <h2 class="mb-4">Leave a Review</h2>
+            <div id="rating-stars" class="mb-4">
+                {% for star in range(1, 6) %}
+                    <span class="rating-star" onclick="rate({{ star }})">★</span>
+                {% endfor %}
+            </div>
+            <textarea id="comment-box" class="form-control"  rows="3" placeholder="Write your review here..."></textarea>
+            <button id="submit-btn" class="btn btn-success" onclick="submitReview()">Submit Review</button>
         </div>
-  </div>
-</div>
-</div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
-    <script src="scripts/review_page.js"></script>
-  </body>
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/review_page.js') }}"></script>
+{% endblock %}
