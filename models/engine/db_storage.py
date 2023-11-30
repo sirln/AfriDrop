@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine, exc, Column, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import models
 from models.sign_in import SignIn
 from models.sign_up import SignUp
 
@@ -25,13 +26,13 @@ def populate_database(engine_url):
     session = Session()
 
     sign_in_data = [
-        {id='1', username='user1', password='pass1'},
-        {id='2', username='user2', password='pass2'},
+        {id=='1', username=='user1', password=='pass1'},
+        {id=='2', username=='user2', password=='pass2'},
     ]
 
     sign_up_data = [
-        {id='1', username='user1', password='pass1', email='user1@example.com'},
-        {id='2', username='user2', password='pass2', email='user2@example.com'},
+        {id=='1', username=='user1', password=='pass1', email=='user1@example.com'},
+        {id=='2', username=='user2', password=='pass2', email=='user2@example.com'},
     ]
 
     try:
@@ -50,6 +51,7 @@ def populate_database(engine_url):
 
     finally:
         session.close()
+
 
 if __name__ == '__main__':
     create_database(DATABASE_URL)
