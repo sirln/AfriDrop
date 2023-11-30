@@ -42,8 +42,6 @@ def forgot_password():
     return render_template('forgot_password.html', form=form)
 
 
-# @app.route('/reset_password/<token>', methods=['GET', 'POST'])
-# def reset_password(token):
 @app.route('/reset_password', methods=['GET', 'POST'])
 def reset_password():
     form = ResetPasswordForm()
@@ -112,20 +110,12 @@ def review_page():
 
 @app.route('/')
 def home():
-# Access the API key
+    # Access the API key
     API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
     cities = ['Nairobi', 'Eldoret', 'Mombasa', 'Thika', 'Kisumu']
     services = ['Spa/Salon services', 'Healthcare', 'Groceries', 'Luxury products']
 
     return render_template('afri_home.html', cities=cities, services=services, API_KEY=API_KEY)
-
-
-#@app.route('/')
-#def index():
-#    cities = ['Nairobi', 'Eldoret', 'Mombasa', 'Thika', 'Kisumu']
-#    services = ['Spa/Salon services', 'Healthcare', 'Groceries', 'Luxury products']
-
-#    return render_template('afridrop.html', cities=cities, services=services)
 
 
 if __name__ == '__main__':
