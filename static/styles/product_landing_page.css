@@ -1,0 +1,69 @@
+header {
+  font-family: Verdana, sans-serif;
+}
+
+img {
+  max-width: 50px;
+}
+
+body {
+  font-family: Verdana, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #89CFF0;
+}
+
+.topnav a {
+  float: right;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 18px 18px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+h6 {
+  padding-top: 40px;
+}
+
+.row {
+  padding-top: 20px;
+}
+
+footer a {
+      text-decoration: none; 
+      color: blue;
+    }
+
+footer a:hover {
+  color: white; 
+}
