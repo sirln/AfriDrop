@@ -1,4 +1,6 @@
+import os
 import uuid
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, session
 from forms import SignUpForm, SignInForm, ForgotPasswordForm, ResetPasswordForm, PostForm
 
@@ -8,6 +10,9 @@ app = Flask(__name__)
 SECRET_KEY = str(uuid.uuid4())
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['UPLOAD_FOLDER'] = 'uploads'
+
+# Load environment variables from .env
+load_dotenv()
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -98,6 +103,29 @@ def post():
 
         return 'Post submitted successfully!'
     return render_template('post_form.html', form=form)
+
+
+@app.route('/review')
+def review_page():
+    return render_template('review_page.html')
+
+
+@app.route('/')
+def home():
+# Access the API key
+    API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
+    cities = ['Nairobi', 'Eldoret', 'Mombasa', 'Thika', 'Kisumu']
+    services = ['Spa/Salon services', 'Healthcare', 'Groceries', 'Luxury products']
+
+    return render_template('afri_home.html', cities=cities, services=services, API_KEY=API_KEY)
+
+
+#@app.route('/')
+#def index():
+#    cities = ['Nairobi', 'Eldoret', 'Mombasa', 'Thika', 'Kisumu']
+#    services = ['Spa/Salon services', 'Healthcare', 'Groceries', 'Luxury products']
+
+#    return render_template('afridrop.html', cities=cities, services=services)
 
 
 if __name__ == '__main__':
