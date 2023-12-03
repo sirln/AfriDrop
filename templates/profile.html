@@ -1,118 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>User Profile</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'base.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body class="bg-secondary">
-    <div class="container pt-3" id="profile-container">
-        <div id="avatar">
-            <img class="image-fluid" src="../static/images/profile_f.png" class="rounded" alt="Cinque Terre" style="width:200px">
-            <button class="btn btn-primary mt-2" data-toggle="modal" data-target="#editAvatarModal">Upload</button>
-            <p id="username" class="mt-2">Username</p>
-        </div>
-        <div class="modal fade" id="editAvatarModal" tabindex="-1" role="dialog" aria-labelledby="editAvatarModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editAvatarModalLabel">Edit Avatar</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+{% endblock %}
+
+
+{% block content %}
+    <body class="bg-secondary">
+        <div class="container pt-3" id="profile-container">
+            <div id="avatar">
+                <img class="image-fluid" src="../static/images/profile_f.png" class="rounded" alt="Cinque Terre" style="width:200px">
+                <button class="btn btn-primary mt-2" data-toggle="modal" data-target="#editAvatarModal">Upload</button>
+                <p id="username" class="mt-2">Username</p>
+            </div>
+
+            {% include 'edit_avatar_modal.html' %}
+            {% include 'edit_bio_modal.html' %}
+
+            <div class="card mt-3 bg-secondary">
+                <div class="card-body"></div>
+                    <div class="bio pt-2" id="Bio">
+                        <h3>About me:</h3>
+                        <p id="bio-paragraph"></p>
+  
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bioModal">
+                            Edit
                         </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Choose a new avatar:</p>
-                        <input type="file" id="avatarInput" accept="image/*">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="updateAvatar()">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <script>
-            function updateAvatar() {
-                const newAvatarUrl = 'https://via.placeholder.com/400';
-                document.getElementById('avatar').innerHTML = `
-                    <img class="img-fluid rounded" src="${newAvatarUrl}" alt="Avatar" style="width:200px">
-                    <p id="username" class="mt-2">Username</p>
-                    <button class="btn btn-primary mt-2" data-toggle="modal" data-target="#editAvatarModal">Upload</button>
-                `;
-                $('#editAvatarModal').modal('hide');
-            }
-        </script>
-
-        <div class="card mt-3 bg-secondary">
-            <div class="card-body"></div>
-                <div class="bio pt-2" id="Bio">
-                    <h3>About me:</h3>
-                    <p id="bio-paragraph"></p>
-
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bioModal">
-                        Edit
-                    </button>
-
-                    <div class="modal" id="bioModal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Edit Bio</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <textarea class="form-control" id="edit-bio-text" rows="4" cols="50"></textarea>
-                                </div>
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="save-button">Save</button>
-                                </div>
-                            </div>
-                        </div>
+ 
+            <div class="card mt-3 bg-secondary">
+                <div class="card-body">
+                    <div class="contact pt-3" id="contact pt-5">
+                        <h3>Contact Information:</h3>
+                        <p>FullName: User</p>
+                        <p>Email: user@example.com</p>
+                        <p>Mobile: 1234567890</p>
                     </div>
                 </div>
             </div>
-        </div>  
-
-        <script>
-            document.getElementById('save-button').addEventListener('click', function() {
-                var bioText = document.getElementById('edit-bio-text').value;
-                document.getElementById('bio-paragraph').textContent = bioText;
-                document.getElementById('edit-bio-text').value = '';
-                $('#bioModal').modal('hide');
-            });
-        </script>
-
-        <div class="card mt-3 bg-secondary">
-            <div class="card-body">
-                <div class="contact pt-3" id="contact pt-5">
-                    <h3>Contact Information:</h3>
-                    <p>FullName: User</p>
-                    <p>Email: user@example.com</p>
-                    <p>Mobile: 1234567890</p>
+ 
+            <div class="card mt-3 bg-secondary">
+                <div class="card-body">
+                    <ul id="social-links" class="list-unstyled">
+                        <h3>Social Links:</h3>
+                        <li><a target="_blank" href="https://www.facebook.com/"><img class="img-fluid" src="../static/images/facebook.png" alt="Facebook"></a>Facebook</li>
+                        <li><a target="_blank" href="https://twitter.com/"><img class="img-fluid" src="../static/images/twitter.png" alt="Twitter"></a>Twitter</li>
+                        <li><a target="_blank" href="https://www.linkedin.com/"><img class="img-fluid" src="../static/images/linkedin.png" alt="LinkedIn"></a>LinkedIn</li>
+                        <li><a target="_blank" href="https://www.youtube.com"><img class="img-fluid" src="../static/images/youtube.png" alt="YouTube"></a>YouTube</li>
+                    </ul>
                 </div>
             </div>
         </div>
-
-        <div class="card mt-3 bg-secondary">
-            <div class="card-body">
-                <ul id="social-links" class="list-unstyled">
-                    <h3>Social Links:</h3>
-                    <li><a target="_blank" href="https://www.facebook.com/"><img class="img-fluid" src="../static/images/facebook.png" alt="Facebook"></a>Facebook</li>
-                    <li><a target="_blank" href="https://twitter.com/"><img class="img-fluid" src="../static/images/twitter.png" alt="Twitter"></a>Twitter</li>
-                    <li><a target="_blank" href="https://www.linkedin.com/"><img class="img-fluid" src="../static/images/linkedin.png" alt="LinkedIn"></a>LinkedIn</li>
-                    <li><a target="_blank" href="https://www.youtube.com"><img class="img-fluid" src="../static/images/youtube.png" alt="YouTube"></a>YouTube</li>
-                </ul>
-            </div>
-        </div>
-    </div>
 </body>
-</html>
+{% endblock %}
