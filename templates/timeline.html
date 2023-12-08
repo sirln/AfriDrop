@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}Timeline - Your Website{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+	<div class="row justify-content-center">
+            <!-- Left Sidebar (2 columns) -->
+            <div class="col-sm-3" style="background-color:white; border-radius: 10px; text-align: center; height: 120vh;">
+            <!-- User Profile Section -->
+          <div class="user-profile">
+        <!-- User Image -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIxxino9Wv8wOukLbv5C_o5Ho999eYezPXwQ&usqp=CAU" alt="User Image" class="rounded-circle img-fluid" width="160" height="160" style="padding-top: 15px;">  
+        
+        <!-- User Name -->
+        <h5 class="mt-3" style="font-color: purple;">John Doe</h5>
+	<p><span style="color: green;"><b>Online</b></span></br>Last Login: 10:30pm EAT</p>
+        
+        <!-- Bookmark/Favorites Section -->
+        <div class="favorites-section mt-3" style="text-align: left; padding-top: 20px;"> 
+            <h6><i class="fas fa-bookmark"></i> Bookmarks/Favorites</h6>
+            
+            <div class="bookmarked-post">
+                <a href="#" class="text-dark">Ibis Ripmo V2 XT- Mountain Bike</a>
+            </div>
+            
+	    <div class="bookmarked-post">
+                <a href="#" class="text-dark">Specialized Rockhopper Elie- All terain Bike</a>
+            </div>
+
+            <div class="bookmarked-post">
+		    <a href="#" class="text-dark">Panadol Cold & Flu- Extra</a>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Notification Area -->
+    <div class="notification-area mt-3" style="text-align: left; padding-top: 20px;">
+	    <h6><i class="fas fa-bell"></i>Notifications</h6>
+        
+        <!-- Example Notification 1 -->
+        <div class="notification">
+            <p>Important update: New features added!</p>
+        </div>
+        
+        <!-- Example Notification 2 -->
+        <div class="notification">
+            <p>New message from Admin</p>
+        </div>
+        
+    </div>
+            </div>
+
+	 <div class="col-sm-6">
+        <!-- Search Bar -->
+	<div class="card" style="margin-bottom: 15px;">
+          <div class="card-body">
+        <div class="row justify-content-center mb-3">
+            <div class="col-sm-12 col-md-6">
+                <form class="form-inline">
+                    <div class="input-group rounded-pill w-100">
+                        <input type="search" class="form-control rounded-pill w-75" placeholder="Search" aria-label="Search";>
+			<div class="input-group-append">
+                            <span class="input-group-text bg-transparent border-0"><i class="fas fa-search text-dark"></i></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+	</div>
+
+        {% for post in timeline_data %}
+            <div class="card mb-4">
+                <div class="card-body rounded">
+                    <div class="d-flex align-items-center">
+                        <img src="{{ post['user_image_url'] }}" alt="User Image" class="rounded-circle mr-2" width="40" height="40">
+                        <div>
+                            <h5 class="card-title">{{ post['user'] }}</h5>
+                        </div>
+                    </div>
+                    {% if post.get('image_url') %}
+			<div class="mt-3">
+	                        <img src="{{ post['image_url'] }}" alt="Post Image" class="custom-image mx-auto d-block mb-3 img-fluid">
+			</div> 
+                   {% endif %}
+                    <p class="card-text">{{ post['content'] }}</p>
+                    <p class="card-subtitle text-muted mb-2">{{ post['timestamp'] }}</p>
+                </div>
+                <div class="card-footer">
+		    <i class="far fa-thumbs-up text-primary mr-2">&nbsp;{{ post['likes'] }}</i>
+		    <span class="ml-2"></span>
+		    <i class="far fa-eye text-secondary mr-2">&nbsp;{{ post['views'] }}</i>
+                    <span class="ml-2"></span>
+		    <i class="far fa-thumbs-down text-danger mr-2">&nbsp;{{ post['dislikes'] }}</i>
+                    <span class="ml-2"></span>
+		    <i class="fas fa-share text-success"></i> Share
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+         <div class="col-sm-3" style="background-color: white; border-radius: 10px; height: 180vh;"> 
+	     <div class="related-posts">
+		     <h5 style="text-align:center;"><b>Related Products</b></h5>
+
+	<div class="related-post" style="padding-bottom: 10%;">
+	    <div class="related-post-title">Bicycles</div>
+	    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBT_cHPOQ3XYIRdjMcUW5Bd6BqwqXuEfHXdg&usqp=CAU" alt="Bicycles Image" class="img-fluid">
+            <div class="related-post-description">This is an example of a post related to your bicycle searches</div>
+        </div>
+
+        <div class="related-post" style="padding-bottom: 10%;">
+	    <div class="related-post-title">Vegetables</div>
+	    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyKoGiWOv6HCvmLIGw5J8QBZHhXldC2LbkPg&usqp=CAU" alt="Vegetables Image" class="img-fluid">
+            <div class="related-post-description">This is an example of a post related to your vegetable searches</div>
+        </div>
+
+	<div class="related-post" style="padding-bottom: 10%;"> 
+	    <div class="related-post-title">Pharmacy</div>
+	    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDAMXd_XLWsVgVyU80rjauDlK2GJQz_Np_-Q&usqp=CAU" alt="Panadol image" class="img-fluid">
+            <div class="related-post-description">This is an example of a post related to your medicine searches</div>
+        </div>
+
+        </div>
+           </div>
+      </div>
+    </div>
+{% endblock %}

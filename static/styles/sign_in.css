@@ -1,0 +1,16 @@
+.card-title {
+    font-family: 'Arial', sans-serif;
+}
+
+.card-body {
+    width: 70%;
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+}
+
+.card {
+   width: 65%;
+   margin: auto;
+   border-radius: 20px;
+   overflow: hidden;
+}

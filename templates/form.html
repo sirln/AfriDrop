@@ -1,0 +1,22 @@
+<form action="{{ action }}" method="{{ method }}">
+    {{ form.hidden_tag() }}
+    {% for field in form if field.name not in ['csrf_token', 'remember_me'] %}
+        <div class="form-group">
+            {{ field.label(class="form-control-label") }}
+            {{ field(class="form-control") }}
+            {% if field.errors %}
+                <small class="text-danger">{{ field.errors[0] }}</small>
+            {% endif %}
+        </div>
+    {% endfor %}
+    {% if form.remember_me %}
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                {{ form.remember_me(class="form-check-input") }} Remember me
+            </label>
+        </div>
+    {% endif %}
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">{{ submit_text }}</button>
+    </div>
+</form>

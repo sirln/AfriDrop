@@ -1,0 +1,60 @@
+body {
+    background-color: #f8f9fa;
+}
+
+h2 {
+   display: flex;
+   justify-content: center;
+}
+
+#review-container {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-body {
+    width: 100%;
+    margin: auto;
+}
+
+#review-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#rating-stars {
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    color: #d8bfd8;
+}
+
+.rating-star:hover,
+.rating-star.active {
+    color: #ffcc00;
+    cursor: pointer;
+}
+
+#comment-box {
+    resize: vertical;
+    width: calc(100% - 20px);
+}
+
+#submit-btn {
+    background-color: #682860;
+    border-color: #682860;
+    width: 40%;
+    margin-top: 15px;
+}
+
+#submit-btn:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}

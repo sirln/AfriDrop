@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AfriDrop{% endblock %}</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!--<link href="{{ url_for('static', filename='styles/base-stylesheet.css') }}" rel="stylesheet">-->
+    <link href="{{ url_for('static', filename='styles/custom-image.css') }}" rel="stylesheet">
+    {% block styles %}{% endblock %}
+</head>
+<body style="background-color: #b39eb5;">
+    {% block navigation %}
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #682860;">
+	<a class="navbar-brand" href="#">
+            <div style="display: flex; align-items: center;">
+            <img src="https://www.shutterstock.com/image-vector/map-africa-african-continent-separable-600nw-31881463.jpg" alt="Afridrop Logo" height="40" style="border-radius:10px;">
+            <span style="margin-left: 10px; font-weight: bold; font-family: Copperplate, Papyrus, fantasy;">AfriDrop</span>
+            </div>
+        </a>
+            <!-- Add your navigation links or user information here -->
+        </nav>
+    {% endblock %}
+
+    <div class="container mt-5">
+        {% block content %}{% endblock %}
+    </div>
+
+    {% block footer %}{% endblock %}
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
