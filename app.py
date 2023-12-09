@@ -111,6 +111,9 @@ def review_page():
 def user_profile():
     return render_template('profile.html')
 
+@app.route('/aboutus')
+def about_us():
+    return render_template('about_us.html')
 
 @app.route('/')
 def home():
